@@ -1,6 +1,6 @@
 ---
 name: john-methodology
-description: Use when the user is making a design, product, or technical decision with a stated rationale (explained "why"), or says "记"/"note" / "记录一下". Also use when asked to apply the user's past decision methodology ("load john-methodology", "按我的方法论"). Do not capture un-explained preferences or factual confirmations.
+description: Use when the user is in a product/UX/design discussion and reasons about a design choice — UI interaction logic, user intuition, scope cuts, data modeling, trade-offs — or states a preference with a "why". Load EARLY in any design conversation, before the first decision is made, so capture is running from the start. Also use when the user says "记" / "note" / "记录" / "记一下" / "这条记下" / "原则" / "按我的方法论" / "load john-methodology". Do not use for factual confirmations or un-explained preferences.
 ---
 
 # John's Decision Methodology
