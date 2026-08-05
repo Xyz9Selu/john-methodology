@@ -1,5 +1,43 @@
 # Principles (John's Methodology)
 
-Distilled from `decisions/`. Generated in distillation sessions (John approves each run). Each principle references supporting decision numbers.
+Distilled from `decisions/`. First distillation run: 2026-08-05 (approved by John). Each principle references supporting decision numbers in `decisions/`.
 
-<!-- Pending distillation — currently 7 raw decisions recorded (2026-08-05). -->
+## P1 — 系统警示不阻断,人做终局决策
+在存在外部最终业务系统做终审、且本系统规则无法与最终规则完全一致 (信息/成本因素) 时,系统只呈现合规现状 (警示/报表/余量),不硬拦截写入;决策权与风险留给人和终审系统。
+Support: #8 (ADR-036)。条件限定: 无外部终审兜底时此原则不自动成立。
+
+## P2 — 单一事实来源,绝不静默回退
+概念只保留一个事实来源;删旧不建兼容桥;数据缺失/无主值时显式失败,绝不猜 fallback。静默回退 = 数据说谎。
+Support: #10 (ADR-047, exchange-rates)。反例提示: 无 primary CC 就不提供能力;汇率缺月不回落旧月。
+
+## P3 — 复杂度必须有可见产出,否则砍掉
+功能/模型/配置链的复杂度若不体现在用户可见结果上,就删,哪怕接受小的公平或精度损失;几天前自己刚定的模型也可推翻。
+Support: #9 (ADR-045), #18 (三副本不算坏味道,抽象等真实成本)。
+
+## P4 — 建模前验证信号有区分度
+为一个状态/属性/列建模前,先用真实数据确认底层信号能区分;恒空/无区分信号不建模型,也不从粗粒度推断细粒度。
+Support: #11 (Not Received 全 NULL 被砍)。
+
+## P5 — UI 收集不规定,可见元素服务决策
+数据录入: 值集开放时自由输入 + 松散约束,不发明枚举卡真实域。展示: 每个可见元素必须支持用户的一个决策,否则移除;UUID/PK 不上 UI;隐藏无动作可做的状态。
+Support: #12 (ADR-024), #13 (ADR-019, ADR-033)。
+
+## P6 — 护栏写成带阈值的逃生口,而非通用强制令
+把事故教训/性能约束写成作用域明确、带具体阈值的护栏 + 逃生口,防止规则本身变成噪音或把无关改动变成大项目。
+Support: #14 (ADR-062)。
+
+## P7 — 最简构造优先,机制后置
+用覆盖真实用例的最简构造;引擎/框架/抽象/新实体都留到具体需求出现或重复真实变贵。复用既有实体加视图,不新建。
+Support: #15 (ADR-011), #16 (ADR-051)。
+
+## P8 — 概念合并/复用前查维护者与语义
+不同维护者、不同变更频率 = 独立维度,别因形似合并;同一 flag/机制不承担两种不相关语义。
+Support: #17 (ADR-021, ADR-060)。
+
+## P9 — 新概念取代旧概念时,删除旧机制
+更简单概念取代复杂概念后,连根删除旧机制 (字段/API/分支),不叠兼容层保留旧复杂度。
+Support: #19 (source-file-ids)。
+
+## P10 — 静默捕捉决策,人在完整语境下确认
+方法论本身: 讨论中不打断,会话节点批量确认卡片;归纳 (principles) 由 AI 提议、人点头后才执行。
+Support: #6, #7。
