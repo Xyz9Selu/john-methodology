@@ -27,6 +27,16 @@ Captures John's design/product/UX/engineering taste as decisions-with-reasons, t
    - **Experience**: "this bit us before", cost-benefit of already-built vs new, YAGNI instincts.
 3. At a natural break (end of topic, end of session), present a **confirmation card** listing candidates: each as `场景 / 决策 / 理由`. John edits (add/delete/modify) before anything is written.
 
+## How capture gets activated
+
+This is an always-on skill, not a task-triggered one — capture must be running BEFORE the first decision appears, or it never fires. It is activated through three redundant layers:
+
+1. **Global instructions injection** — `~/.config/opencode/AGENTS.md` instructs every session to load this skill and run the capture flow during design discussions. This is the primary guarantee.
+2. **Description trigger** — frontmatter says to load EARLY in design conversations, so an agent that hasn't read AGENTS.md still activates on its own.
+3. **Explicit trigger** — John can say "记" / "记录" / "记一下" / "这条记下" / "按我的方法论" to force capture at any time.
+
+If John reports "I said something worth capturing and nothing happened", the skill is still loadable — the failure is activation, not registration. Check AGENTS.md injection and restart opencode (skills and instructions load only at startup).
+
 ## Record format
 
 One entry per decision, appended to `decisions/YYYY-MM.md`:
