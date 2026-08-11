@@ -11,6 +11,26 @@ Captures John's design/product/UX/engineering taste as decisions-with-reasons, t
 
 **Not everything is worth keeping — only decisions John explained.** A decision with a stated reason reveals his taste, mental model, and experience. A bare preference does not.
 
+## Candidate gate
+
+Before adding anything to a confirmation card, all four answers must be **yes**:
+
+1. **John-originated choice:** John personally chose between meaningful alternatives; do not capture an agent's recommendation that John merely accepted.
+2. **Explicit rationale:** John stated why he chose it, rather than only supplying a fact, requirement, or example.
+3. **Cross-context test:** The decision and rationale still make sense after removing the feature's entity names, tables, dates, and current dataset values.
+4. **Principle test:** It can be stated as a rule that would change a future design decision. Do not manufacture a principle from a one-off implementation choice.
+
+If any answer is no, silently discard it. A confirmation card must include a one-line `可复用原则`; if no honest principle can be written, the candidate does not belong on the card.
+
+### Reject these as non-candidates
+
+| Statement type | Why it is not methodology |
+|---|---|
+| “This Part has Process Time, so look it up by SAP PN.” | A feature-specific data relationship and implementation input. |
+| “The next 16 weeks cover 96.3% of the current WOs.” | A measurement about one dataset, not John's reusable preference. |
+| “Use ISO Week.” | An unexplained convention choice. |
+| “I agree with your recommendation.” | Acceptance alone does not supply John's own rationale. |
+
 ## When to use
 
 - During any design discussion, brainstorm, spec review, or code review where John states a preference WITH a reason ("I prefer X because...", "don't do Y — it makes Z confusing").
@@ -21,11 +41,11 @@ Captures John's design/product/UX/engineering taste as decisions-with-reasons, t
 ## Capture flow
 
 1. **Silently accumulate** during conversation. Do NOT interrupt to ask "should I record this?".
-2. Value signals — capture when the reason shows:
-   - **Product/UX taste**: interaction model choices, what feels intuitive, reducing user confusion.
-   - **Mental model**: preferring one consistent model over special cases, flat over nested, simple over feature-complete.
-   - **Experience**: "this bit us before", cost-benefit of already-built vs new, YAGNI instincts.
-3. At a natural break (end of topic, end of session), present a **confirmation card** listing candidates: each as `场景 / 决策 / 理由`. John edits (add/delete/modify) before anything is written.
+2. Apply the **Candidate gate**. Only then look for value signals in the reason:
+    - **Product/UX taste**: interaction model choices, what feels intuitive, reducing user confusion.
+    - **Mental model**: preferring one consistent model over special cases, flat over nested, simple over feature-complete.
+    - **Experience**: "this bit us before", cost-benefit of already-built vs new, YAGNI instincts.
+3. At a natural break (end of topic, end of session), present a **confirmation card** listing candidates: each as `场景 / 决策 / 理由 / 可复用原则`. John edits (add/delete/modify) before anything is written.
 
 ## How capture gets activated
 
