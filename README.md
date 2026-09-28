@@ -47,4 +47,4 @@ Requires a runtime that auto-discovers skills from `~/.agents/skills/` (e.g. ope
 
 ## License
 
-GPL-3.0 — see [LICENSE](LICENSE).
+CC BY 4.0 — see [LICENSE](LICENSE).
