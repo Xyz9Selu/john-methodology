@@ -20,7 +20,25 @@ Before adding anything to a confirmation card, all four answers must be **yes**:
 3. **Cross-context test:** The decision and rationale still make sense after removing the feature's entity names, tables, dates, and current dataset values.
 4. **Principle test:** It can be stated as a rule that would change a future design decision. Do not manufacture a principle from a one-off implementation choice.
 
-If any answer is no, silently discard it. A confirmation card must include a one-line `可复用原则`; if no honest principle can be written, the candidate does not belong on the card.
+If any answer is no, silently discard it. A confirmation card must include a `可复用原则`; if no honest principle can be written, the candidate does not belong on the card.
+
+## DNA distillation (mandatory)
+
+A surface rule (e.g. "split Personal and Overall lists") is **not yet methodology**. Before a principle is written, force one more abstraction step up to the **philosophical / DNA layer**:
+
+1. **Name the tension** — what two long-term values are actually in conflict (e.g. code reuse / technical enforcement vs. human intent / responsibility boundary)?
+2. **State the value ordering** — which value wins, and why. A principle must describe *how values are ranked*, not *what a feature looks like*.
+3. **Cross-domain falsification test** — strip the feature's entities, tables, roles, and dates; does the rule still hold for reimbursement, scheduling, or permissions? If it only makes sense inside the current feature, it is still surface-level.
+4. **Negate the substitution** — state what *must not* be substituted by technical means ("permissions implement a boundary; they cannot replace it").
+
+**Hard gate — reject as surface-level (`表象`) if the principle still names** a page, entity, role, feature code, or module.
+
+| Surface (reject) | DNA (keep) |
+|---|---|
+| "Split Personal and Overall request lists." | "Product boundaries follow human intent and responsibility; technical reuse and permission controls implement a boundary, they never replace it." |
+| "Use one FP, scope with DP." | "Capability (may enter) and data scope (what is seen) are different questions; do not let one axis masquerade as the other." |
+
+The confirmation card uses a **two-layer format** — `证据 / 深层张力 / DNA 原则 / 当前决策如何体现它` — so John sees both the raw decision and the abstraction it supports.
 
 ### Reject these as non-candidates
 
@@ -45,7 +63,7 @@ If any answer is no, silently discard it. A confirmation card must include a one
     - **Product/UX taste**: interaction model choices, what feels intuitive, reducing user confusion.
     - **Mental model**: preferring one consistent model over special cases, flat over nested, simple over feature-complete.
     - **Experience**: "this bit us before", cost-benefit of already-built vs new, YAGNI instincts.
-3. At a natural break (end of topic, end of session), present a **confirmation card** listing candidates: each as `场景 / 决策 / 理由 / 可复用原则`. John edits (add/delete/modify) before anything is written.
+3. At a natural break (end of topic, end of session), present a **confirmation card** listing candidates. Each card uses the DNA two-layer format — `证据 / 深层张力 / DNA 原则 / 当前决策如何体现它`. John edits (add/delete/modify) before anything is written.
 
 ## How capture gets activated
 
@@ -66,6 +84,7 @@ One entry per decision, appended to `decisions/YYYY-MM.md`:
 - 场景: <context — what was being discussed>
 - 决策: <the choice, including options rejected>
 - 理由: <John's rationale, in his words or faithful restatement>
+- DNA 原则: <the distilled DNA-layer principle after the mandatory abstraction; omit only when genuinely none>
 - 标签: <product-ux | mental-model | experience | engineering>
 ```
 
@@ -74,6 +93,7 @@ Numbering is sequential within the file. Tags help later distillation.
 ## Distillation (principles)
 
 - After ~10 recorded decisions, PROPOSE a distillation session (do not auto-run). John agrees → draft `principles.md` entries: each principle = a generalized rule + links to supporting decision numbers.
+- Each principle must pass the DNA hard gate — no page/entity/role/feature names; it must state a value ordering.
 - Keep the raw decision text; principles are summaries that reference back, never replacements.
 - Re-run distillation as the backlog grows; merge duplicate principles.
 
